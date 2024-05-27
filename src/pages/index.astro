@@ -2,77 +2,65 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
+import createSlug from "../lib/createSlug";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Howdy, howdy</div>
+    <div class="text-5xl font-bold">I'm Douglas Pham</div>
+    <div class="text-3xl py-3 font-bold">
+      I do early-stage ventures, CorpDev, and coding
+    </div>
     <div class="py-2">
       <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
+        I'm a senior finance major at UT Austin with a minor in computer
+        science. My experience spans early-stage venture healthcare advising at
+        Dell Medical School, corporate strategy at a startup backed by Shell,
+        and hands-on coding with a focus on fintech projects involving
+        blockchain and credit modeling.
       </text>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
-      </a>
+      <a
+        class="btn"
+        href="https://www.linkedin.com/in/douglaspham/"
+        target="_blank"
+      >
+        Let's connect!</a
+      >
     </div>
   </div>
 
   <div>
     <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
   </div>
-
   <HorizontalCard
-    title="Demo Project 1"
+    title="Comprehensive Regression Model Performance Evaluation"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    desc="Evaluates multiple regression models including Lasso, Ridge, Decision Tree, Random Forest, and Neural Network on StockReturn.csv. Implements shrinkage techniques for Lasso and Ridge, compares their MSEs, and analyzes model performance. Trains and predicts using Decision Tree, Random Forest, and Neural Network, assessing their MSEs and model depths to determine the most effective approach."
+    url="#"
+    badge="FOSS"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Texas InventionWorks 3D Print Job Software Manager"
+    img="/post_img.webp"
+    desc="Manages 3D print jobs within a budget, optimizing for high-quality prints using queues and hash tables. Allows selection of detail and material. Utilizes the knapsack algorithm to maximize output, reviewing and simulating jobs based on budget constraints."
     url="#"
     badge="NEW"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
+    title="DeFi Protocol Cost of Equity Derivation"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    desc="Downloads 5 years of stock data for SPY and AAVE, computes daily returns, and renames columns. Utilizes advanced regression analysis to derive AAVE's beta relative to SPY. Applies the CAPM formula to precisely calculate the cost of equity, enhancing investment decision-making for DeFi protocols."
     url="#"
   />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
 </BaseLayout>
